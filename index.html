@@ -3,47 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>佛號修持 - 雲端圓滿版</title>
+    <title>佛號修持 - 4-buddha</title>
     <style>
         body, html {
             margin: 0; padding: 0; height: 100%;
-            background-color: #0d0d0d; color: #d4af37;
+            background-color: #0a0a0a; color: #e5c100;
             font-family: "Noto Serif TC", "Songti TC", serif;
             display: flex; justify-content: center; align-items: center;
             overflow: hidden;
         }
         .bg-glow {
             position: absolute; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #2c1a0a 0%, #000000 85%);
+            background: radial-gradient(circle at center, #221a0f 0%, #000000 90%);
             z-index: -1;
-            animation: breath 8s ease-in-out infinite;
-        }
-        @keyframes breath {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
         }
         .container {
-            text-align: center; border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 60px 30px; background: rgba(0, 0, 0, 0.85);
+            text-align: center; border: 1px solid rgba(229, 193, 0, 0.2);
+            padding: 50px 30px; background: rgba(0, 0, 0, 0.8);
             box-shadow: 0 0 100px rgba(0, 0, 0, 1);
-            max-width: 450px; width: 85%; border-radius: 4px;
-            backdrop-filter: blur(10px);
+            max-width: 450px; width: 85%; border-radius: 12px;
         }
-        h1 { font-size: 2.2em; letter-spacing: 12px; margin: 0; font-weight: 400; text-shadow: 0 0 15px rgba(212, 175, 55, 0.5); }
+        h1 { font-size: 2.5em; letter-spacing: 15px; margin: 0; font-weight: 500; color: #e5c100; text-shadow: 0 0 10px rgba(229, 193, 0, 0.3); }
         .subtitle { margin-top: 15px; font-size: 1.1em; color: #a68b2d; border-bottom: 1px solid #333; padding-bottom: 25px; display: inline-block; }
         
-        /* 碼表樣式 */
         #timer { font-size: 75px; margin: 40px 0; font-family: 'Georgia', serif; color: #fff; letter-spacing: 2px; }
 
         .btn-start {
-            background: transparent; border: 1px solid #d4af37; color: #d4af37;
+            background: transparent; border: 1px solid #e5c100; color: #e5c100;
             padding: 18px 60px; font-size: 1.4em; cursor: pointer;
-            transition: all 0.5s ease; letter-spacing: 8px;
+            transition: all 0.4s ease; letter-spacing: 8px; border-radius: 30px;
         }
-        .btn-start:hover { background: rgba(212, 175, 55, 0.1); border-color: #fff; color: #fff; box-shadow: 0 0 20px rgba(212, 175, 55, 0.3); }
+        .btn-start:hover { background: rgba(229, 193, 0, 0.1); color: #fff; border-color: #fff; }
 
-        .status { margin-top: 30px; font-size: 14px; color: #666; height: 20px; font-style: italic; }
-        .footer { margin-top: 60px; font-size: 12px; color: #444; letter-spacing: 2px; }
+        .status { margin-top: 30px; font-size: 14px; color: #666; height: 20px; }
+        .footer { margin-top: 50px; font-size: 12px; color: #444; letter-spacing: 2px; line-height: 1.8; }
     </style>
 </head>
 <body>
@@ -51,18 +44,18 @@
 <div class="bg-glow"></div>
 
 <div class="container">
-    <h1>南無阿彌陀佛</h1>
-    <div class="subtitle">陳有宏師兄念誦．法音宣流</div>
+    <h1>阿彌陀佛</h1>
+    <div class="subtitle">四字洪名．至誠念誦</div>
     
     <div id="timer">00:00:00</div>
 
     <audio id="buddhaAudio" loop preload="auto">
-        <source src="https://files.catbox.moe/id6zyc.mp3" type="audio/mpeg">
+        <source src="buddha.mp3" type="audio/mpeg">
     </audio>
 
     <button id="ctrlBtn" class="btn-start" onclick="togglePlay()">開始修行</button>
     
-    <div id="status" class="status">法音已接引，點擊按鈕開始</div>
+    <div id="status" class="status">法音就緒，一心不亂</div>
 
     <div class="footer">
         願以此功德．莊嚴佛淨土<br>
@@ -81,20 +74,19 @@
 
     function togglePlay() {
         if (audio.paused) {
-            // 嘗試播放
             audio.play().then(() => {
-                statusText.innerText = "法音宣流，計時開始";
+                statusText.innerText = "法音宣流中...";
                 startTimer();
                 ctrlBtn.innerText = "暫停攝心";
             }).catch(err => {
-                statusText.innerText = "連線中，請再試一次";
+                statusText.innerText = "讀取失敗，請確認 buddha.mp3 已上傳至同一個儲存庫";
                 console.error(err);
             });
         } else {
             audio.pause();
             stopTimer();
-            ctrlBtn.innerText = "繼續持誦";
-            statusText.innerText = "修持暫停中";
+            ctrlBtn.innerText = "繼續修持";
+            statusText.innerText = "隨喜功德，暫停中";
         }
     }
 
